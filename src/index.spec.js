@@ -22,6 +22,10 @@ describe('Text should be work fine.', () => {
         result = resolveTextBlockInfo(true, 1, 1);
         expect(result).to.deep.equal({ image: true, dfRow: 'normal', tcRow: 'normal', })
     });
+    it('Should be return object for arguments true, 0, 1', () => {
+        result = resolveTextBlockInfo(true, 0, 1);
+        expect(result).to.deep.equal({ image: true, dfRow: 'none', tcRow: 'normal', })
+    });
     it('Should be return object for arguments true, 1, 2', () => {
         result = resolveTextBlockInfo(true, 1, 2);
         expect(result).to.deep.equal({ image: true, dfRow: 'normal', tcRow: 'more', })
@@ -32,10 +36,14 @@ describe('Text should be work fine.', () => {
     });
     it('Should be return object for arguments true, 2, 1', () => {
         result = resolveTextBlockInfo(true, 2, 1);
-        expect(result).to.deep.equal({ image: true, dfRow: 'normal', tcRow: 'more', })
+        expect(result).to.deep.equal({ image: true, dfRow: 'normal', tcRow: 'none', })
     });
     it('Should be return object for arguments true, 3, 0', () => {
         result = resolveTextBlockInfo(true, 3, 0);
+        expect(result).to.deep.equal({ image: true, dfRow: 'more', tcRow: 'none', })
+    });
+    it('Should be return object for arguments true, 3, 1', () => {
+        result = resolveTextBlockInfo(true, 3, 1);
         expect(result).to.deep.equal({ image: true, dfRow: 'more', tcRow: 'none', })
     });
 
@@ -44,7 +52,7 @@ describe('Text should be work fine.', () => {
         result = resolveTextBlockInfo(false, 0, 0);
         expect(result).to.deep.equal({ image: false, dfRow: 'none', tcRow: 'none', })
     });
-    it('Should be return object for arguments false, 10, 0', () => {
+    it('Should return false, normal, none when no image, df=10, tc=0', () => {
         result = resolveTextBlockInfo(false, 10, 0);
         expect(result).to.deep.equal({ image: false, dfRow: 'normal', tcRow: 'none', })
     });
